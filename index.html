@@ -179,33 +179,26 @@
   </section>
 
   <section id="projects" class="projects">
-    <h2>Unsere Projekte</h2>
+  <h2>Unsere Projekte</h2>
 
-    <div class="project">
-      <img src="images/haus1.jpg" alt="Haus 1 mit Solarpanels">
-      <div class="project-info">
-        <h3>Modernes Einfamilienhaus</h3>
-        <p>Komplette Dachinstallation von 9 kWp in 2023, inklusive Batteriespeicher.</p>
-      </div>
+  <div class="project">
+    <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47-2.jpeg" alt="Projekt 1">
+    <div class="project-info">
+      <h3>Modernes Einfamilienhaus</h3>
+      <p>Komplette Solaranlage installiert im Februar 2025 mit neuester Technik.</p>
     </div>
+  </div>
 
-    <div class="project">
-      <img src="images/haus2.jpg" alt="Haus 2 mit Solarpanels">
-      <div class="project-info">
-        <h3>Stadthaus in München</h3>
-        <p>Effiziente Solararchitektur, optimiert für urbane Bedingungen.</p>
-      </div>
+  <div class="project">
+    <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47.jpeg" alt="Projekt 2">
+    <div class="project-info">
+      <h3>Stadthaus München</h3>
+      <p>Effiziente Solararchitektur auf begrenzter Dachfläche.</p>
     </div>
+  </div>
 
-    <div class="project">
-      <img src="images/haus3.jpg" alt="Haus 3 mit Solarpanels">
-      <div class="project-info">
-        <h3>Landwirtschaftliche Nutzung</h3>
-        <p>Solaranlage für Selbstversorgung eines Bauernhofs, 15 kWp Leistung.</p>
-      </div>
-    </div>
+</section>
 
-  </section>
 
   <section id="appointment" class="appointment">
     <h2>Terminanmeldung</h2>
@@ -241,7 +234,7 @@
     }
 
     const sections = document.querySelectorAll('.about, .projects, .appointment');
-    const options = { threshold: 0.2 };
+    const options = { threshold: 0.5 };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
