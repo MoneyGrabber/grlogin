@@ -21,7 +21,15 @@
       background: #2a2a2a;
       color: white;
       text-align: center;
-      padding: 100px 20px 50px;
+      padding: 60px 20px 30px;
+      position: relative;
+    }
+
+    header h1 {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .menu-toggle {
@@ -100,6 +108,7 @@
     .input-group {
       position: relative;
       margin-bottom: 20px;
+      width: 100%;
     }
 
     .input-group label {
@@ -202,6 +211,20 @@
         font-size: 15px;
       }
     }
+
+    .inline-inputs {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .inline-inputs .input-group {
+      width: 48%;
+    }
+
+    .checkbox-label {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -276,10 +299,54 @@
         <div class="input-underline"></div>
       </div>
 
+      <div class="inline-inputs">
+        <div class="input-group">
+          <label for="address">Adresse</label>
+          <input type="text" id="address" name="address" required>
+          <div class="input-underline"></div>
+        </div>
+        <div class="input-group">
+          <label for="housenumber">Hausnummer</label>
+          <input type="text" id="housenumber" name="housenumber" required>
+          <div class="input-underline"></div>
+        </div>
+      </div>
+
+      <div class="inline-inputs">
+        <div class="input-group">
+          <label for="plz">PLZ</label>
+          <input type="text" id="plz" name="plz" required>
+          <div class="input-underline"></div>
+        </div>
+        <div class="input-group">
+          <label for="city">Ort</label>
+          <input type="text" id="city" name="city" required>
+          <div class="input-underline"></div>
+        </div>
+      </div>
+
+      <h3>Zusätzliche Informationen (optional)</h3>
+
       <div class="input-group">
-        <label for="address">Adresse</label>
-        <input type="text" id="address" name="address" required>
+        <label for="roofType">Dachart</label>
+        <input type="text" id="roofType" name="roofType">
         <div class="input-underline"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="annualConsumption">Jährlicher Verbrauch</label>
+        <input type="text" id="annualConsumption" name="annualConsumption">
+        <div class="input-underline"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="implementation">Geplante Umsetzung</label>
+        <input type="text" id="implementation" name="implementation">
+        <div class="input-underline"></div>
+      </div>
+
+      <div class="checkbox-label">
+        <label><input type="checkbox" name="financing" /> Finanzierung?</label>
       </div>
 
       <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
