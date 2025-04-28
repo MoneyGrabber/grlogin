@@ -20,46 +20,91 @@
     header {
       background: #2a2a2a;
       color: white;
-      padding: 20px 30px; /* Make header thinner */
+      padding: 50px 20px; /* Adjusted padding to make the header thinner */
       display: flex;
-      justify-content: center; /* Center the content horizontally */
+      justify-content: center; /* Align the content in the center */
       align-items: center;
     }
 
     .header-content {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1200px; /* Limit the width to avoid too wide header */
     }
 
     .header-image {
-      width: 80px; /* Adjust the size of the logo */
-      margin-right: 20px;
+      width: 80px; /* Adjust the size of the logo image */
+      margin-right: 20px; /* Space between the image and text */
     }
 
     .header-text {
       text-align: center;
-      flex-grow: 1; /* Allow text to take up available space */
     }
 
     .header-text h1 {
       margin: 0;
-      font-size: 36px;
+      font-size: 36px; /* Size of the main heading */
     }
 
     .header-text p {
-      font-size: 18px;
+      font-size: 18px; /* Size of the subheading */
       margin-top: 10px;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      background: white;
+      display: block;
+      height: 3px;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      background: #333;
+      width: 200px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.4s;
+      z-index: 1000;
+    }
+
+    nav.active {
+      right: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 15px 0;
     }
 
     section {
       padding: 50px 20px;
     }
 
-    .about {
-      margin-top: 50px; /* Added space between header and "Über uns" */
+    .about, .appointment, .projects {
       max-width: 800px;
       margin: auto;
       background: white;
@@ -71,7 +116,7 @@
       transition: opacity 1s ease, transform 1s ease;
     }
 
-    .about.show {
+    .about.show, .appointment.show, .projects.show {
       opacity: 1;
       transform: translateY(0);
     }
@@ -107,6 +152,33 @@
       border-bottom: 2px solid #007BFF;
     }
 
+    .input-group::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #007BFF;
+      transition: all 0.6s ease;
+      transform: translateX(-50%);
+    }
+
+    .input-group input:focus + .input-underline {
+      width: 100%;
+    }
+
+    .input-underline {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #007BFF;
+      transition: all 0.6s ease;
+      transform: translateX(-50%);
+    }
+
     button {
       background: #2a2a2a;
       color: white;
@@ -122,47 +194,60 @@
       background: #444;
     }
 
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
+    .project {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .project img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 100%;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.6s ease;
+    }
+
+    .project:hover .project-info {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .appointment {
+      padding: 40px;
     }
 
     @media (max-width: 768px) {
       header {
-        padding: 15px 20px; /* Adjust header for mobile */
+        padding: 50px 20px 30px;
       }
-
-      .header-text h1 {
-        font-size: 24px; /* Smaller text size for mobile */
-      }
-
-      .header-text p {
-        font-size: 14px; /* Smaller subheading */
-      }
-
-      .about {
-        margin-top: 20px;
-      }
-
-      .input-group {
-        margin-bottom: 15px;
-      }
-
-      button {
-        font-size: 16px; /* Smaller button for mobile */
-      }
-
-      .checkbox-group {
-        flex-direction: row; /* Align checkboxes side by side on mobile */
-      }
-
-      .checkbox-group label {
-        font-size: 14px; /* Adjust font size for mobile */
+      body {
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+  </div>
+
+  <nav id="menu">
+    <a href="#about">Über uns</a>
+    <a href="#projects">Projekte</a>
+    <a href="#appointment">Termin</a>
+  </nav>
 
   <header>
     <div class="header-content">
@@ -179,6 +264,26 @@
     <p>Grüne Systeme ist Ihr zuverlässiger Partner für moderne Photovoltaik-Lösungen. Mit über 10 Jahren Erfahrung helfen wir Haushalten und Unternehmen, unabhängiger und nachhaltiger zu werden. Unser Ziel: Eine saubere Zukunft für alle!</p>
   </section>
 
+  <section id="projects" class="projects">
+    <h2>Unsere Projekte</h2>
+
+    <div class="project">
+      <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47-2.jpeg" alt="Projekt 1">
+      <div class="project-info">
+        <h3>Modernes Einfamilienhaus</h3>
+        <p>Komplette Solaranlage installiert im Februar 2025 mit neuester Technik.</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47.jpeg" alt="Projekt 2">
+      <div class="project-info">
+        <h3>Stadthaus München</h3>
+        <p>Effiziente Solararchitektur auf begrenzter Dachfläche.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="appointment" class="appointment">
     <h2>Terminanmeldung</h2>
     <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="danke.html">
@@ -188,21 +293,25 @@
       <div class="input-group">
         <label for="firstname">Vorname</label>
         <input type="text" id="firstname" name="firstname" required>
+        <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
         <label for="lastname">Nachname</label>
         <input type="text" id="lastname" name="lastname" required>
+        <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
         <label for="phone">Mobilnummer</label>
         <input type="tel" id="phone" name="phone" required>
+        <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
         <label for="email">E-Mail-Adresse</label>
         <input type="email" id="email" name="email" required>
+        <div class="input-underline"></div>
       </div>
 
       <div class="input-group" style="display: flex;">
@@ -227,17 +336,55 @@
         </div>
       </div>
 
-      <div class="checkbox-group">
-        <label for="financing"><input type="checkbox" id="financing" name="financing"> Finanzierung?</label>
-        <label for="acceptTerms"><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
+      <p><strong>Zusätzliche Informationen (optional)</strong></p>
+
+      <div class="input-group">
+        <label for="roofType">Dachart</label>
+        <input type="text" id="roofType" name="roofType">
+        <div class="input-underline"></div>
       </div>
+
+      <div class="input-group">
+        <label for="annualConsumption">Jährlicher Verbrauch</label>
+        <input type="text" id="annualConsumption" name="annualConsumption">
+        <div class="input-underline"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="plannedImplementation">Geplante Umsetzung</label>
+        <input type="text" id="plannedImplementation" name="plannedImplementation">
+        <div class="input-underline"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="financing">Finanzierung?</label>
+        <input type="checkbox" id="financing" name="financing">
+      </div>
+
+      <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
 
       <button type="submit">Termin buchen</button>
     </form>
+    <a class="impressum-link" href="/impressum">Impressum</a>
   </section>
 
   <script>
-    // Optional JavaScript for form validation or animations (if necessary)
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    const sections = document.querySelectorAll('.about, .projects, .appointment');
+    const options = { threshold: 0.5 };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, options);
+
+    sections.forEach(section => observer.observe(section));
   </script>
 
 </body>
