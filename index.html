@@ -20,16 +20,37 @@
     header {
       background: #2a2a2a;
       color: white;
-      text-align: center;
-      padding: 60px 20px 30px;
-      position: relative;
+      padding: 50px 20px; /* Adjusted padding to make the header thinner */
+      display: flex;
+      justify-content: center; /* Align the content in the center */
+      align-items: center;
     }
 
-    header h1 {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+    .header-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px; /* Limit the width to avoid too wide header */
+    }
+
+    .header-image {
+      width: 80px; /* Adjust the size of the logo image */
+      margin-right: 20px; /* Space between the image and text */
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 36px; /* Size of the main heading */
+    }
+
+    .header-text p {
+      font-size: 18px; /* Size of the subheading */
+      margin-top: 10px;
     }
 
     .menu-toggle {
@@ -108,7 +129,6 @@
     .input-group {
       position: relative;
       margin-bottom: 20px;
-      width: 100%;
     }
 
     .input-group label {
@@ -203,27 +223,17 @@
       transform: translateY(0);
     }
 
+    .appointment {
+      padding: 40px;
+    }
+
     @media (max-width: 768px) {
       header {
-        padding: 70px 20px 30px;
+        padding: 50px 20px 30px;
       }
       body {
         font-size: 15px;
       }
-    }
-
-    .inline-inputs {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .inline-inputs .input-group {
-      width: 48%;
-    }
-
-    .checkbox-label {
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -240,8 +250,13 @@
   </nav>
 
   <header>
-    <h1>Willkommen bei Grüne Systeme</h1>
-    <p>Ihr Partner für nachhaltige Solarenergie und Innovation</p>
+    <div class="header-content">
+      <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/Bild_28.04.25_um_02.17-removebg-preview.png" alt="Grüne Systeme Logo" class="header-image">
+      <div class="header-text">
+        <h1>Willkommen bei Grüne Systeme</h1>
+        <p>Ihr Partner für nachhaltige Solarenergie und Innovation</p>
+      </div>
+    </div>
   </header>
 
   <section id="about" class="about">
@@ -299,33 +314,29 @@
         <div class="input-underline"></div>
       </div>
 
-      <div class="inline-inputs">
-        <div class="input-group">
+      <div class="input-group" style="display: flex;">
+        <div style="flex: 1; padding-right: 10px;">
           <label for="address">Adresse</label>
           <input type="text" id="address" name="address" required>
-          <div class="input-underline"></div>
         </div>
-        <div class="input-group">
+        <div style="flex: 0.3;">
           <label for="housenumber">Hausnummer</label>
           <input type="text" id="housenumber" name="housenumber" required>
-          <div class="input-underline"></div>
         </div>
       </div>
 
-      <div class="inline-inputs">
-        <div class="input-group">
+      <div class="input-group" style="display: flex;">
+        <div style="flex: 0.4; padding-right: 10px;">
           <label for="plz">PLZ</label>
           <input type="text" id="plz" name="plz" required>
-          <div class="input-underline"></div>
         </div>
-        <div class="input-group">
+        <div style="flex: 0.6;">
           <label for="city">Ort</label>
           <input type="text" id="city" name="city" required>
-          <div class="input-underline"></div>
         </div>
       </div>
 
-      <h3>Zusätzliche Informationen (optional)</h3>
+      <p><strong>Zusätzliche Informationen (optional)</strong></p>
 
       <div class="input-group">
         <label for="roofType">Dachart</label>
@@ -340,13 +351,14 @@
       </div>
 
       <div class="input-group">
-        <label for="implementation">Geplante Umsetzung</label>
-        <input type="text" id="implementation" name="implementation">
+        <label for="plannedImplementation">Geplante Umsetzung</label>
+        <input type="text" id="plannedImplementation" name="plannedImplementation">
         <div class="input-underline"></div>
       </div>
 
-      <div class="checkbox-label">
-        <label><input type="checkbox" name="financing" /> Finanzierung?</label>
+      <div class="input-group">
+        <label for="financing">Finanzierung?</label>
+        <input type="checkbox" id="financing" name="financing">
       </div>
 
       <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
