@@ -20,18 +20,18 @@
     header {
       background: #2a2a2a;
       color: white;
-      padding: 30px 20px; /* Adjusted padding to make the header thinner */
+      padding: 50px 20px; /* Adjusted padding to make the header thinner */
       display: flex;
-      justify-content: flex-start; /* Align content to the left */
+      justify-content: center; /* Align the content in the center */
       align-items: center;
     }
 
     .header-content {
       display: flex;
-      justify-content: flex-start; /* Align the content to the left */
+      justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1200px; /* Limit the width to avoid too wide header */
     }
 
     .header-image {
@@ -40,7 +40,7 @@
     }
 
     .header-text {
-      text-align: left;
+      text-align: center;
     }
 
     .header-text h1 {
@@ -104,8 +104,7 @@
       padding: 50px 20px;
     }
 
-    .about {
-      margin-top: 50px; /* Added spacing between header and "Über uns" */
+    .about, .appointment, .projects {
       max-width: 800px;
       margin: auto;
       background: white;
@@ -117,7 +116,7 @@
       transition: opacity 1s ease, transform 1s ease;
     }
 
-    .about.show {
+    .about.show, .appointment.show, .projects.show {
       opacity: 1;
       transform: translateY(0);
     }
@@ -163,6 +162,10 @@
       background: #007BFF;
       transition: all 0.6s ease;
       transform: translateX(-50%);
+    }
+
+    .input-group input:focus + .input-underline {
+      width: 100%;
     }
 
     .input-underline {
@@ -224,70 +227,12 @@
       padding: 40px;
     }
 
-    .input-group input[type="checkbox"] {
-      width: auto;
-      margin-right: 10px;
-    }
-
-    .input-group label {
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    .input-group .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .checkbox-group label {
-      display: inline;
-      margin-top: 10px;
-    }
-
     @media (max-width: 768px) {
       header {
-        padding: 20px 10px; /* Thinner header */
+        padding: 50px 20px 30px;
       }
-
-      .header-text h1 {
-        font-size: 24px; /* Smaller font for small screens */
-      }
-
-      .header-text p {
-        font-size: 14px; /* Smaller subheading */
-      }
-
-      .about {
-        margin-top: 30px; /* Adjusted spacing for mobile */
-      }
-
-      .input-group input[type="checkbox"] {
-        margin-right: 5px;
-      }
-
-      .input-group label {
-        font-size: 14px; /* Smaller labels */
-      }
-
-      .checkbox-group {
-        display: block;
-      }
-
-      .checkbox-group label {
-        font-size: 14px; /* Adjusted font for smaller screen */
-      }
-
-      button {
-        font-size: 16px; /* Smaller button text */
-      }
-
-      .appointment {
-        padding: 20px;
-      }
-
-      .input-group {
-        margin-bottom: 15px; /* Less space between form elements */
+      body {
+        font-size: 15px;
       }
     }
   </style>
@@ -411,10 +356,12 @@
         <div class="input-underline"></div>
       </div>
 
-      <div class="checkbox-group">
-        <label for="financing"><input type="checkbox" id="financing" name="financing"> Finanzierung?</label>
-        <label for="acceptTerms"><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
+      <div class="input-group">
+        <label for="financing">Finanzierung?</label>
+        <input type="checkbox" id="financing" name="financing">
       </div>
+
+      <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
 
       <button type="submit">Termin buchen</button>
     </form>
