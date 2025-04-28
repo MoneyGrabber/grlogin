@@ -20,11 +20,8 @@
     header {
       background: #2a2a2a;
       color: white;
-      text-align: left;
-      padding: 50px 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
+      padding: 100px 20px 50px;
     }
 
     .menu-toggle {
@@ -197,44 +194,12 @@
       transform: translateY(0);
     }
 
-    .form-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .form-row .input-group {
-      flex: 1;
-    }
-
-    .form-row .input-group:nth-child(2) {
-      flex: 0.4;
-    }
-
-    .optional-section {
-      margin-top: 30px;
-    }
-
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
     @media (max-width: 768px) {
       header {
-        padding: 40px 20px 30px;
+        padding: 70px 20px 30px;
       }
       body {
         font-size: 15px;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
-
-      .form-row .input-group:nth-child(2) {
-        flex: 1;
       }
     }
   </style>
@@ -253,9 +218,7 @@
 
   <header>
     <h1>Willkommen bei Grüne Systeme</h1>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-    </div>
+    <p>Ihr Partner für nachhaltige Solarenergie und Innovation</p>
   </header>
 
   <section id="about" class="about">
@@ -289,34 +252,61 @@
       <input type="hidden" name="form-name" value="kontakt" />
       <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-      <div class="form-row">
-        <div class="input-group">
-          <label for="firstname">Vorname</label>
-          <input type="text" id="firstname" name="firstname" required>
-        </div>
-
-        <div class="input-group">
-          <label for="lastname">Nachname</label>
-          <input type="text" id="lastname" name="lastname" required>
-        </div>
+      <div class="input-group">
+        <label for="firstname">Vorname</label>
+        <input type="text" id="firstname" name="firstname" required>
+        <div class="input-underline"></div>
       </div>
 
-      <div class="form-row">
-        <div class="input-group">
-          <label for="phone">Mobilnummer</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-
-        <div class="input-group">
-          <label for="email">E-Mail-Adresse</label>
-          <input type="email" id="email" name="email" required>
-        </div>
+      <div class="input-group">
+        <label for="lastname">Nachname</label>
+        <input type="text" id="lastname" name="lastname" required>
+        <div class="input-underline"></div>
       </div>
 
-      <div class="form-row">
-        <div class="input-group">
-          <label for="address">Adresse</label>
-          <input type="text" id="address" name="address" required>
-        </div>
+      <div class="input-group">
+        <label for="phone">Mobilnummer</label>
+        <input type="tel" id="phone" name="phone" required>
+        <div class="input-underline"></div>
+      </div>
 
-        <
+      <div class="input-group">
+        <label for="email">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required>
+        <div class="input-underline"></div>
+      </div>
+
+      <div class="input-group">
+        <label for="address">Adresse</label>
+        <input type="text" id="address" name="address" required>
+        <div class="input-underline"></div>
+      </div>
+
+      <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
+
+      <button type="submit">Termin buchen</button>
+    </form>
+    <a class="impressum-link" href="/impressum">Impressum</a>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    const sections = document.querySelectorAll('.about, .projects, .appointment');
+    const options = { threshold: 0.5 };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, options);
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
