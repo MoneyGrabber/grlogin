@@ -106,44 +106,43 @@
       font-size: 16px;
       margin-bottom: 5px;
       display: block;
-      position: absolute;
-      top: 50%;
-      left: 10px;
-      transform: translateY(-50%);
-      transition: 0.2s;
-      pointer-events: none;
-      color: #555;
     }
 
     .input-group input {
       width: 100%;
-      padding: 12px 8px 12px 10px;
+      padding: 8px 0;
       font-size: 16px;
-      border: 2px solid #ccc;
-      border-radius: 25px;
+      border: none;
+      border-bottom: 2px solid #ccc;
       background: transparent;
       outline: none;
       transition: border-color 0.3s;
     }
 
     .input-group input:focus {
-      border-color: #007BFF;
+      border-bottom: 2px solid #007BFF;
     }
 
-    .input-group input:focus + label {
-      top: -10px;
-      font-size: 12px;
-      color: #007BFF;
+    .input-group::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #007BFF;
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
     }
 
-    .input-group input:focus + label + .input-underline {
+    .input-group input:focus + .input-underline {
       width: 100%;
     }
 
     .input-underline {
       position: absolute;
       left: 50%;
-      bottom: 8px;
+      bottom: 0;
       width: 0;
       height: 2px;
       background: #007BFF;
@@ -254,32 +253,32 @@
       <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
       <div class="input-group">
-        <input type="text" id="firstname" name="firstname" required>
         <label for="firstname">Vorname</label>
+        <input type="text" id="firstname" name="firstname" required>
         <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
-        <input type="text" id="lastname" name="lastname" required>
         <label for="lastname">Nachname</label>
+        <input type="text" id="lastname" name="lastname" required>
         <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
-        <input type="tel" id="phone" name="phone" required>
         <label for="phone">Mobilnummer</label>
+        <input type="tel" id="phone" name="phone" required>
         <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
-        <input type="email" id="email" name="email" required>
         <label for="email">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required>
         <div class="input-underline"></div>
       </div>
 
       <div class="input-group">
-        <input type="text" id="address" name="address" required>
         <label for="address">Adresse</label>
+        <input type="text" id="address" name="address" required>
         <div class="input-underline"></div>
       </div>
 
