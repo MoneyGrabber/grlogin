@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Photovoltaik Firma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grüne Systeme - Photovoltaik Experten</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     html {
@@ -11,33 +11,80 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background: linear-gradient(to bottom, #f0f0f0, #d3d3d3);
     }
 
-    /* Removed the navbar completely as you asked */
-
-    .hero {
+    header {
+      background: #2a2a2a;
+      color: white;
       text-align: center;
       padding: 100px 20px 50px;
-      background: #444;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      background: white;
+      display: block;
+      height: 3px;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      background: #333;
+      width: 200px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.4s;
+      z-index: 1000;
+    }
+
+    nav.active {
+      right: 0;
+    }
+
+    nav a {
       color: white;
-      margin-top: 0;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 15px 0;
+    }
+
+    section {
+      padding: 50px 20px;
     }
 
     .about, .appointment, .projects {
-      width: 90%;
       max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: auto;
       background: white;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
       opacity: 0;
       transform: translateY(50px);
-      transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     .about.show, .appointment.show, .projects.show {
@@ -50,94 +97,59 @@
       flex-direction: column;
     }
 
-    label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="tel"] {
-      position: relative;
-      padding: 10px;
-      border: none;
-      border-bottom: 2px solid gray;
-      background: transparent;
-      outline: none;
+    form label, form input {
+      margin-bottom: 10px;
       font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    form input[type="text"]::after,
-    form input[type="email"]::after,
-    form input[type="tel"]::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background-color: darkblue;
-      transition: all 0.5s ease;
-      transform: translateX(-50%);
-    }
-
-    form input[type="text"]:focus::after,
-    form input[type="email"]:focus::after,
-    form input[type="tel"]:focus::after {
-      width: 100%;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      transform: none;
-      transition: width 0.4s ease, height 0.4s ease 0.4s;
-    }
-
-    form input[type="text"]:focus,
-    form input[type="email"]:focus,
-    form input[type="tel"]:focus {
-      border-bottom: 2px solid darkblue;
     }
 
     button {
-      background: #333;
+      background: #2a2a2a;
       color: white;
       padding: 12px;
       border: none;
-      border-radius: 5px;
+      font-size: 18px;
       cursor: pointer;
+      border-radius: 6px;
       transition: background 0.3s;
     }
 
     button:hover {
-      background: darkblue;
-    }
-
-    .impressum-link {
-      display: block;
-      margin-top: 15px;
-      text-align: center;
-      color: #333;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      display: block;
-      margin-bottom: 10px;
+      background: #444;
     }
 
     .project {
-      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .project img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
     }
 
     .project-info {
-      text-align: center;
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 100%;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.5s ease;
+    }
+
+    .project:hover .project-info {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (max-width: 768px) {
+      header {
+        padding: 70px 20px 30px;
+      }
       body {
         font-size: 15px;
       }
@@ -146,44 +158,53 @@
 </head>
 <body>
 
-  <header class="hero">
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+  </div>
+
+  <nav id="menu">
+    <a href="#about">Über uns</a>
+    <a href="#projects">Projekte</a>
+    <a href="#appointment">Termin</a>
+  </nav>
+
+  <header>
     <h1>Willkommen bei Grüne Systeme</h1>
-    <p>Ihr Partner für nachhaltige Energielösungen</p>
+    <p>Ihr Partner für nachhaltige Solarenergie und Innovation</p>
   </header>
 
   <section id="about" class="about">
     <h2>Über uns</h2>
-    <p>Wir sind Experten im Bereich Photovoltaik und Wärmepumpen. Wir helfen Ihnen, saubere Energie effizient zu nutzen.</p>
+    <p>Grüne Systeme ist Ihr zuverlässiger Partner für moderne Photovoltaik-Lösungen. Mit über 10 Jahren Erfahrung helfen wir Haushalten und Unternehmen, unabhängiger und nachhaltiger zu werden. Unser Ziel: Eine saubere Zukunft für alle!</p>
   </section>
 
   <section id="projects" class="projects">
-    <h2>Unsere Projekte</h2>
+  <h2>Unsere Projekte</h2>
 
-    <div class="project">
-      <img src="https://raw.githubusercontent.com/MoneyGrabber/solar-page/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47-2.jpeg" alt="Projekt 1">
-      <div class="project-info">
-        <h3>Modernes Einfamilienhaus</h3>
-        <p>Komplette Solaranlage installiert im Februar 2025 mit neuester Technik.</p>
-      </div>
+  <div class="project">
+    <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47-2.jpeg" alt="Projekt 1">
+    <div class="project-info">
+      <h3>Modernes Einfamilienhaus</h3>
+      <p>Komplette Solaranlage installiert im Februar 2025 mit neuester Technik.</p>
     </div>
+  </div>
 
-    <div class="project">
-      <img src="https://raw.githubusercontent.com/MoneyGrabber/solar-page/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47.jpeg" alt="Projekt 2">
-      <div class="project-info">
-        <h3>Stadthaus München</h3>
-        <p>Effiziente Solararchitektur auf begrenzter Dachfläche.</p>
-      </div>
+  <div class="project">
+    <img src="https://raw.githubusercontent.com/MoneyGrabber/grlogin/main/Bilder%20Anmeldeseite/WhatsApp%20Image%202025-02-21%20at%2000.50.47.jpeg" alt="Projekt 2">
+    <div class="project-info">
+      <h3>Stadthaus München</h3>
+      <p>Effiziente Solararchitektur auf begrenzter Dachfläche.</p>
     </div>
+  </div>
 
-  </section>
+</section>
+
 
   <section id="appointment" class="appointment">
     <h2>Terminanmeldung</h2>
     <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="danke.html">
       <input type="hidden" name="form-name" value="kontakt" />
-      <p hidden>
-        <label>Don’t fill this out: <input name="bot-field" /></label>
-      </p>
+      <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
       <label for="firstname">Vorname</label>
       <input type="text" id="firstname" name="firstname" required>
@@ -200,7 +221,7 @@
       <label for="address">Adresse</label>
       <input type="text" id="address" name="address" required>
 
-      <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html">Datenschutzeinwilligung</a></label>
+      <label><input type="checkbox" required> Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzeinwilligung</a></label>
 
       <button type="submit">Termin buchen</button>
     </form>
@@ -208,8 +229,12 @@
   </section>
 
   <script>
-    const sections = document.querySelectorAll('.about, .appointment, .projects');
-    const options = { threshold: 0.2 };
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('active');
+    }
+
+    const sections = document.querySelectorAll('.about, .projects, .appointment');
+    const options = { threshold: 0.5 };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -219,9 +244,8 @@
       });
     }, options);
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
   </script>
+
 </body>
 </html>
