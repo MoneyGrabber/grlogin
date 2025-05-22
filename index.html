@@ -20,9 +20,9 @@
     header {
       background: #2a2a2a;
       color: white;
-      padding: 25px 15px; /* Adjusted padding to make the header thinner */
+      padding: 25px 15px;
       display: flex;
-      justify-content: center; /* Align the content in the center */
+      justify-content: center;
       align-items: center;
     }
 
@@ -31,12 +31,12 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      max-width: 1200px; /* Limit the width to avoid too wide header */
+      max-width: 1200px;
     }
 
     .header-image {
-      width: 80px; /* Adjust the size of the logo image */
-      margin-right: 20px; /* Space between the image and text */
+      width: 80px;
+      margin-right: 20px;
     }
 
     .header-text {
@@ -45,11 +45,11 @@
 
     .header-text h1 {
       margin: 0;
-      font-size: 36px; /* Size of the main heading */
+      font-size: 36px;
     }
 
     .header-text p {
-      font-size: 18px; /* Size of the subheading */
+      font-size: 18px;
       margin-top: 10px;
     }
 
@@ -106,7 +106,7 @@
 
     .about, .appointment, .projects {
       position: relative;
-      top: 25px; 
+      top: 25px;
       max-width: 800px;
       margin: auto;
       background: white;
@@ -154,8 +154,7 @@
       border-bottom: 2px solid #007BFF;
     }
 
-    .input-group::after {
-      content: '';
+    .input-underline {
       position: absolute;
       left: 50%;
       bottom: 0;
@@ -168,17 +167,6 @@
 
     .input-group input:focus + .input-underline {
       width: 100%;
-    }
-
-    .input-underline {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: #007BFF;
-      transition: all 0.6s ease;
-      transform: translateX(-50%);
     }
 
     button {
@@ -249,6 +237,8 @@
     <a href="#about">Über uns</a>
     <a href="#projects">Projekte</a>
     <a href="#appointment">Termin</a>
+    <a href="#homepage">Homepage</a>
+    <a href="#map">Standort</a>
   </nav>
 
   <header>
@@ -359,7 +349,7 @@
       </div>
 
       <div class="input-group">
-        <label for="financing">Finanzierung?</label>
+        <label for="financing">Finanzierung gewünscht?</label>
         <input type="checkbox" id="financing" name="financing">
       </div>
 
@@ -368,6 +358,36 @@
       <button type="submit">Termin buchen</button>
     </form>
     <a class="impressum-link" href="/impressum">Impressum</a>
+  </section>
+
+  <section id="homepage" class="appointment">
+    <h2>Unsere Homepage</h2>
+    <p>Besuchen Sie unsere Hauptseite für mehr Informationen:</p>
+    <p><a href="https://gruene-systeme.de" target="_blank" style="color: #007BFF;">https://gruene-systeme.de</a></p>
+  </section>
+
+  <section id="map" class="appointment">
+    <h2>Unser Standort & Kundenbewertungen</h2>
+    <p>Besuchen Sie uns in Baden-Baden oder lesen Sie, was unsere Kunden sagen:</p>
+    <ul style="margin-bottom: 20px;">
+      <li>⭐️⭐️⭐️⭐️⭐️ "Schnell, zuverlässig und sehr professionell!"</li>
+      <li>⭐️⭐️⭐️⭐️ "Top Beratung und perfekte Umsetzung."</li>
+      <li>⭐️⭐️⭐️⭐️⭐️ "Sehr zufrieden mit der installierten Solaranlage."</li>
+    </ul>
+    <p>
+      <a href="https://www.google.com/maps/place/Ufgaustraße+25,+76532+Baden-Baden/" target="_blank">Mehr Bewertungen auf Google ansehen</a>
+    </p>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0px 5px 20px rgba(0,0,0,0.1);">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.682412140797!2d8.207127076698953!3d48.757107471330584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479719eacdfb271b%3A0x471cb177caeb3bd4!2sUfgaustra%C3%9Fe%2025%2C%2076532%20Baden-Baden%2C%20Germany!5e0!3m2!1sen!2sde!4v1716382674650!5m2!1sen!2sde"
+        width="100%" 
+        height="100%" 
+        style="border:0; position: absolute; top:0; left: 0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </section>
 
   <script>
